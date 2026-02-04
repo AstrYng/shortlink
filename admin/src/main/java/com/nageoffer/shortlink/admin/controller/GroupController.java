@@ -49,7 +49,7 @@ public class GroupController {
     }
 
     /**
-     * 删除短链接分组名称
+     * 删除短链接分组
      */
     @DeleteMapping("/api/short-link/v1/group")
     public Result<Void> deleteGroup(@RequestParam String gid) {
