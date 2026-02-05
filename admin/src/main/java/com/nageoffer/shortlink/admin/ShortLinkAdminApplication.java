@@ -1,4 +1,4 @@
-package com.nageoffer.shortlink;
+package com.nageoffer.shortlink.admin;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
