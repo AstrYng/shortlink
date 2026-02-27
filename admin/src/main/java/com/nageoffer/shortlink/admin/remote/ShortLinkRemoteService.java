@@ -5,10 +5,10 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.TypeReference;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.nageoffer.shortlink.admin.common.convention.result.Result;
-import com.nageoffer.shortlink.admin.remote.req.ShortLinkCreateReqDTO;
-import com.nageoffer.shortlink.admin.remote.req.ShortLinkPageReqDTO;
-import com.nageoffer.shortlink.admin.remote.resp.ShortLinkCreateRespDTO;
-import com.nageoffer.shortlink.admin.remote.resp.ShortLinkPageRespDTO;
+import com.nageoffer.shortlink.admin.remote.dto.req.ShortLinkCreateReqDTO;
+import com.nageoffer.shortlink.admin.remote.dto.req.ShortLinkPageReqDTO;
+import com.nageoffer.shortlink.admin.remote.dto.resp.ShortLinkCreateRespDTO;
+import com.nageoffer.shortlink.admin.remote.dto.resp.ShortLinkPageRespDTO;
 
 import java.util.HashMap;
 import java.util.Map;
