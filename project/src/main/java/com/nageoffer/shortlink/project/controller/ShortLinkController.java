@@ -1,5 +1,7 @@
 package com.nageoffer.shortlink.project.controller;
 
+import cn.hutool.http.server.HttpServerRequest;
+import cn.hutool.http.server.HttpServerResponse;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.nageoffer.shortlink.project.common.convention.result.Result;
 import com.nageoffer.shortlink.project.common.convention.result.Results;
@@ -10,6 +12,8 @@ import com.nageoffer.shortlink.project.dto.resp.ShortLinikGroupCountQueryRespDTO
 import com.nageoffer.shortlink.project.dto.resp.ShortLinkCreateRespDTO;
 import com.nageoffer.shortlink.project.dto.resp.ShortLinkPageRespDTO;
 import com.nageoffer.shortlink.project.service.ShortLinkService;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +27,11 @@ import java.util.List;
 public class ShortLinkController {
 
     private final ShortLinkService shortLinkService;
+
+    @GetMapping("/{short-uri}")
+    public void restoreUrl(@PathVariable("short-uri") String shortUri, ServletRequest request, ServletResponse response) {
+        shortLinkService.restoreUrl(shortUri, request, response);
+    }
 
     /**
      * 创建短链接
