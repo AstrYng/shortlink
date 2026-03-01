@@ -48,4 +48,13 @@ public class RecycleBinController {
         recycleBinService.recoverRecycleBin(requestParam);
         return Results.success();
     }
+
+    /**
+     * 删除短链接
+     */
+    @PostMapping("/api/short-link/v1/recycle-bin/remove")
+    public Result<Void> removeRecycleBin(@RequestBody RecycleBinRecoverReqDTO requestParam) {
+        recycleBinService.removeRecyclebin(requestParam);
+        return Results.success();
+    }
 }
