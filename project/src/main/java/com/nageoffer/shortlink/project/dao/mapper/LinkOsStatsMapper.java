@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Param;
 public interface LinkOsStatsMapper extends BaseMapper<LinkOsStatsDO> {
 
     /**
-     * 记录地区访问监控数据
+     * 记录操作系统访问监控数据
      */
     @Insert("""
     INSERT INTO t_link_os_stats (
