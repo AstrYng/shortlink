@@ -1,5 +1,6 @@
 package com.nageoffer.shortlink.admin.remote;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.TypeReference;
@@ -9,6 +10,7 @@ import com.nageoffer.shortlink.admin.remote.dto.req.*;
 import com.nageoffer.shortlink.admin.remote.dto.resp.ShortLinikGroupCountQueryRespDTO;
 import com.nageoffer.shortlink.admin.remote.dto.resp.ShortLinkCreateRespDTO;
 import com.nageoffer.shortlink.admin.remote.dto.resp.ShortLinkPageRespDTO;
+import com.nageoffer.shortlink.admin.remote.dto.resp.ShortLinkStatsAccessRecordRespDTO;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -79,7 +81,7 @@ public interface ShortLinkRemoteService {
      * @return 网站标题
      */
     default Result<String> getTitleByUtl(@RequestParam("url") String url) {
-        String resultStr = HttpUtil.get("http://127.0.0.1:8001/api/short-link/v1/title?url=" + url);
+         String resultStr = HttpUtil.get("http://127.0.0.1:8001/api/short-link/v1/title?url=" + url);
         return JSON.parseObject(resultStr, new TypeReference<>() {
         });
     }
@@ -127,4 +129,18 @@ public interface ShortLinkRemoteService {
         String resultBodyStr = HttpUtil.post("http://127.0.0.1:8001/api/short-link/v1/recycle-bin/remove", JSON.toJSONString(requestParam));
     }
 
+    /**
+     * 访问单个短链接指定时间内监控访问记录数据
+     *
+     * @param requestParam 访问短链接监控访问记录请求参数
+     * @return 短链接监控访问记录信息
+     */
+    default Result<IPage<ShortLinkStatsAccessRecordRespDTO>> shortLinkStatsAccessRecord(ShortLinkStatsAccessRecordReqDTO requestParam) {
+        Map<String, Object> stringObjectMap = BeanUtil.beanToMap(requestParam, false, true);
+        stringObjectMap.remove("orders");
+        stringObjectMap.remove("records");
+        String resultBodyStr = HttpUtil.get("http://127.0.0.1:8001/api/short-link/v1/stats/access-record", stringObjectMap);
+        return JSON.parseObject(resultBodyStr, new TypeReference<>() {
+        });
+    }
 }
