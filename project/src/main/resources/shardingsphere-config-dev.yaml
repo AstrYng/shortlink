@@ -3,7 +3,7 @@ dataSources:
   ds_0:
     dataSourceClassName: com.zaxxer.hikari.HikariDataSource
     driverClassName: com.mysql.cj.jdbc.Driver
-    jdbcUrl: jdbc:mysql://127.0.0.1:3306/link?useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    jdbcUrl: jdbc:mysql://127.0.0.1:3306/link?useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&sessionVariables=collation_connection=utf8mb4_0900_ai_ci&allowMultiQueries=true&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
 
@@ -33,6 +33,8 @@ rules:
           standard:
             shardingColumn: full_short_url
             shardingAlgorithmName: link_stats_today_table_hash_mod
+    bindingTables:
+      - t_link, t_link_stats_today
     # 分片算法
     shardingAlgorithms:
       # 数据表分片算法
